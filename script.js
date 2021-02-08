@@ -2,129 +2,188 @@
 
 document.addEventListener("DOMContentLoaded", ButtonClick);
 
+const generate = document.querySelector("#Generate");
+const Input = document.querySelector("#Input_text");
+const options = document.querySelector("#Options");
+const Output = document.querySelector("#Output_text");
+
 let input;
-let change;
+let choose;
 let output;
 
-function start() {
-  console.log("start");
+function ButtonClick() {
 
-  // click -> generate output
-  document.querySelector("#Generate").addEventListener("click", Output);
-};
+    console.log("start");
 
-function Output() {
-  console.log("Done");
-  
-  //get string from input
-  input = document.querySelector("#Input_text").value;
+    generate.addEventListener("click", Chooseoutput);
+}
 
-  if (input) {
-    getOption();
-  } else {
-    console.log("You need to write something first.");
-  }  
+function Chooseoutput() {
 
-};
+    console.log("Done");
+
+    input = Input.value;
+
+    if (input) {
+      getOption();
+    } else {
+        console.log("You need to write something first.");
+    }
+}
 
 function getOption() {
 
-  console.log("Finish");
+    console.log("Finish");
 
-  change = parseInt(selectStringConversion.value);
+    choose = parseInt(options.value);
 
-  mannyAnwser();
+    mannyAnwser();
 }
 
 function mannyAnwser() {
 
-  console.log("So manny anwsers");
+    console.log("So manny anwsers");
 
-  switch (change) {
-      case 1:
+    switch (choose) {
+        case 1:
           numberOne();
           break;
-      case 2:
+        case 2:
           numberToo();
           break;
-      case 3:
+        case 3:
           numberThree();
           break;
-      case 4:
+        case 4:
           numberFour();
           break;
-      case 5:
+        case 5:
           numberFive();
           break;
-      case 6:
+        case 6:
           numberSix();
           break;
-      case 7:
+        case 7:
           numberSeven();
           break;
-      case 8:
+        case 8:
           numberEight();
           break;
-      default:
-          console.log("no option selected");
-          break;
-  };
-};
+        default:
+            console.log("no option selected");
+            break;
+    }
+}
 
 function numberOne() {
 
-  console.log("One done");
+    console.log("One done");
 
-  const firstLetter = input[0].toUpperCase();
-  const restOfFirstName = input.substring(1).toLowerCase();
+    const firstLetter = input[0].toUpperCase();
+    const restOfFirstName = input.substring(1).toLowerCase();
 
-  output = `${firstLetter}${restOfFirstName}`;
+    output = `${firstLetter}${restOfFirstName}`;
 
-  showOutput();
-};
-
+    showResult();
+}
 
 function numberToo() {
 
-  console.log("Too done");
+    console.log("Too done");
+    const firstNamePosition = input.indexOf(" ");
 
-  const firstNamePosition = input.indexOf(" ");
+    output = input.substring(0, firstNamePosition);
 
-  output = input.substring(0, firstNamePosition);
-
-  showOutput();
+    showResult();
 }
 
 function numberThree() {
 
-  console.log("Three done");
+    console.log("Three done");
 
-  const firstNamePosition = input.indexOf(" ");
+    const firstNamePosition = input.indexOf(" ");
 
-  output = input.substring(0, firstNamePosition).length;
+    output = input.substring(0, firstNamePosition).length;
 
-  showOutput();
+    showResult();
 }
 
 function numberFour() {
 
-  console.log("Four done");
+    console.log("Four done");
 
-  const firstPosition = input.indexOf(" ") + 1;
+    const firstPosition = input.indexOf(" ") + 1;
+    const lastPosition = input.lastIndexOf(" ");
 
-  const lastPosition = input.lastIndexOf(" ");
+    const middleName = input.substring(firstPosition, lastPosition);
 
-  const middleName = input.substring(firstPosition, lastPosition);
+    output = `Middle name: ${middleName} at position ${firstPosition} and ${lastPosition}`;
 
-  output = `Middle name: ${middleName} at position ${firstPosition} and ${lastPosition}`;
-
-  showOutput();
+    showResult();
 }
 
+function numberFive() {
 
+    console.log("Five done");
 
-function showOutput() {
-  console.log("showOutput");
+    const fileType = input.lastIndexOf(".");
+    output = input.substring(fileType);
 
-  output.textContent = stringResult;
+    showResult();
+}
+
+function numberSix() {
+
+    console.log("Six done");
+
+    const star = "*";
+
+    output = star.repeat(input.length);
+
+    showResult();
+}
+
+function numberSeven() {
+
+    console.log("Seven done");
+
+    const beforeUppercase = input.substring(0, 2).toLowerCase();
+    const uppercaseLetter = input[2].toUpperCase();
+    const afterUppercase = input.substring(3).toLowerCase();
+
+    output = `${beforeUppercase}${uppercaseLetter}${afterUppercase}`;
+
+    showResult();
+}
+
+function numberEight() {
+
+    console.log("Eight done");
+
+    let wasLastLetterAHyphenOrSpace = false;
+    let result = "";
+
+    for (let index = 0; index < input.length; index++) {
+        if (wasLastLetterAHyphenOrSpace === true) {
+            result += input[index].toUpperCase();
+        } else {
+            result += input[index];
+        }
+
+        if (input[index] === "-" || input[index] === " ") {
+            wasLastLetterAHyphenOrSpace = true;
+        } else {
+            wasLastLetterAHyphenOrSpace = false;
+        }
+    }
+
+    output = result;
+
+    showResult();
+}
+
+function showResult() {
+    console.log("showResult");
+
+    Output.textContent = output;
 }
