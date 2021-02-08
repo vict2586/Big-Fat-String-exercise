@@ -1,0 +1,42 @@
+body {
+  background-color: white;
+}
+
+h1 {
+  color: black;
+  text-align: center;
+  font-family: "Courier New", Courier, monospace;
+  margin-top: 5%;
+}
+
+#interface {
+  background-color: rgb(124, 124, 124);
+  color: white;
+  border-radius: 2em;
+  width: 300px;
+  font-family: "Courier New", Courier, monospace;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.2em;
+  margin-left: 37%;
+}
+
+#Anwser {
+  list-style: none;
+  padding: 0;
+  text-align: right;
+  height: 8em;
+  max-height: 4em;
+}
+
+input[type="text"] {
+  width: calc(100% - 1em);
+  text-align: right;
+}
+
+select,
+button {
+  height: 3em;
+}
